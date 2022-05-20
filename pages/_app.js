@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import Header from '../components/Header';
 import { createGlobalStyle } from 'styled-components';
 
 
@@ -22,6 +23,7 @@ body{
     return(
       <>
       <GlobalStyle />
+      <Header/>
       <Component {...pageProps} />
       
       </>

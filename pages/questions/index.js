@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {useState,useEffect} from 'react';
+import Link from 'next/link';
 import Card from '../Card';
 
 
@@ -9,6 +10,9 @@ const QuestionContainer = styled.div`
    flex-direction:column;
    margin:5%;
 `
+
+const CardLink = styled.a`
+text-decoration:none;`
 
 
 function Questions(){
@@ -58,12 +62,20 @@ function Questions(){
                 <div>
                     {
                         questions.map((question) => (
-                            <Card
+                         <Link
+                           key={question.question_id}
+                           href={`/questions/${question.question_id}`}
+                           passHref >
+                        
+                         <CardLink>
+                         <Card
                              key={question.question_id}
                              title={question.title}
                              view={question.view_count}
                              answers={question.answer_count}
                             />
+                         </CardLink>
+                         </Link>
                         ))
                     }
 

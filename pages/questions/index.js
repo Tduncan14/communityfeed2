@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {useState,useEffect} from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Card from '../Card';
 
@@ -19,6 +20,8 @@ function Questions(){
 
     const [loading,setLoading] = useState(false);
     const [questions,setQuestions] = useState([]);
+    const router = useRouter();
+    const {page} = router.query
 
 
 
@@ -28,13 +31,16 @@ function Questions(){
         async function fetchData(){
 
 
-        const data = await fetch(
-            'https://api.stackexchange.com/2.2/questions?order=desc&sort=hot&tagged=reactjs&site=stackoverflow'
-        )
+            let querys = page ? `page=${page}&`: ''
+
+            const data = await fetch(
+                `https://api.stackexchange.com/2.2/questions?${querys}5&order=desc&sort=activity&site=stackoverflow`);
 
 
         const result = await data.json()
 
+
+        console.log(result)
 
         if(result){
             setQuestions(result.items);
@@ -46,7 +52,7 @@ function Questions(){
 
 
         fetchData()
-    },[])
+    },[page])
 
 
 

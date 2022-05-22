@@ -93,7 +93,7 @@ function Questions(){
                         ))
                         
                     }
-                      <Pagination style={{justifyContent:'center'}} currentPage={parseInt(page) || 1} hasMore={hasMore} />
+                      <Pagination currentPage={parseInt(page) || 1} hasMore={hasMore} />
 
                 </div>
     )}

@@ -45,6 +45,9 @@ function Pagination({currentPage,hasMore}){
           </Link>
 
 
+           
+         
+
           <Link 
             href={`?page=${parseInt(currentPage + 1)}`}>
                 <PaginationLink  disabled={!hasMore}>Next</PaginationLink>

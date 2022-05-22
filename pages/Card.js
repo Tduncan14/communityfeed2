@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import Link from 'next/link';
+import Pagination from "../components/PaginationContainer/Pagination";
 
 
 const CardWrapper = styled.div `
@@ -27,6 +29,7 @@ function Card ({title,view,answers}){
 
 
     return(
+        <>
         <CardWrapper>
         <Title>{title}</Title>
         <Count>
@@ -35,6 +38,8 @@ function Card ({title,view,answers}){
         }
         </Count>
         </CardWrapper>
+
+        </>
 
     )
 }

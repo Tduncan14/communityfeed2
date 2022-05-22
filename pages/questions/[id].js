@@ -2,6 +2,7 @@
 import {useState,useEffect} from 'react';
 import { useRouter } from "next/router";
 import styled from 'styled-components';
+import Link from 'next/link';
 import Card from "../Card";
 
 
@@ -61,11 +62,22 @@ function QuestionDetail (){
                 loading ? (
                     <span> Loading...</span>
                 ):(
+                    <>
                     <Card 
                       title={question.title}
                       view={question.view_count}
                       answers={question.answers_count}/>
+
+                      <Link
+                      href={'/questions'}>
+                          <button>back</button>
+                    </Link>
+                    </>
                 )
+
+                
+        
+   
             }
         </QuestionDetailContainer>
     )

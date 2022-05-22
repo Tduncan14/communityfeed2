@@ -3,6 +3,7 @@ import {useState,useEffect} from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Card from '../Card';
+import Pagination from '../../components/PaginationContainer/Pagination';
 
 
 const QuestionContainer = styled.div`
@@ -21,6 +22,7 @@ function Questions(){
     const [loading,setLoading] = useState(false);
     const [questions,setQuestions] = useState([]);
     const router = useRouter();
+    const [hasMore,setHasMore] = useState(false);
     const {page} = router.query
 
 
@@ -45,6 +47,7 @@ function Questions(){
         if(result){
             setQuestions(result.items);
             setLoading(false);
+            setHasMore(result.has_more);
         }
 
 
@@ -68,6 +71,7 @@ function Questions(){
                 <div>
                     {
                         questions.map((question) => (
+                        <>
                          <Link
                            key={question.question_id}
                            href={`/questions/${question.question_id}`}
@@ -82,8 +86,14 @@ function Questions(){
                             />
                          </CardLink>
                          </Link>
+
+                   
+
+                         </>
                         ))
+                        
                     }
+                      <Pagination style={{justifyContent:'center'}} currentPage={parseInt(page) || 1} hasMore={hasMore} />
 
                 </div>
     )}
